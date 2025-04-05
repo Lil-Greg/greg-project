@@ -3,6 +3,7 @@ import './App.css'
 import Home from './views/Home'
 import Login from './views/auth/Login'
 import Register from './views/auth/Register'
+import TicTacToe from './views/game/TicTacToe'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Register />} />
+        <Route path='/game' element={<TicTacToe />} />
       </Routes>
     </BrowserRouter>
   )
