@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './views/Home.tsx'
 import TicTacToe from './views/game/TicTacToe.tsx'
 import Search from './views/weather/Search.tsx';
+import { weatherLoader } from './loaders/WeatherLoader.ts';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/weather",
-    element: <Search />
+    element: <Search />,
+    loader: weatherLoader,
   }
 ])
 
