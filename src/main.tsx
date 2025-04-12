@@ -4,7 +4,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './views/Home.tsx'
 import TicTacToe from './views/game/TicTacToe.tsx'
-import Search from './views/weather/search.tsx'
+import Search from './views/weather/Search.tsx';
 
 const router = createBrowserRouter([
   {
