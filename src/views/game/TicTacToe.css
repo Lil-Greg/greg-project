@@ -1,7 +1,28 @@
-.container {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.board {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0.5rem;
 }
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+.cell {
+  padding: 1rem;
+  font: red;
+  background-color: white;
+  border: solid 0.25rem red;
+  border-radius: 10px;
+}
+/*
+Making:
+
+X   |   x   |   x
+x   |   x   |   x
+x   |   x   |   x
+ .row-1 {
+}
+.cell-1 {
+  border-left: 5px solid rgba(128, 128, 128, 0.7);
+} */
