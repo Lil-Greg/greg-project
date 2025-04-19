@@ -38,18 +38,15 @@ const router = createBrowserRouter([
     element: <Search />,
     children: [
       {
-        path: ":q/:days",
+        path: ":q",
         loader: async ({ params }) => {
           const q = params.q;
-          const days = params.days;
 
           if (!q) {
             throw new Error("q is Undefined");
-          } else if (!days) {
-            throw new Error("days is Undefined");
           };
 
-          const data = await weatherLoader(q, parseInt(days));
+          const data = await weatherLoader(q);
           return data;
         },
         element: <SearchCard />,

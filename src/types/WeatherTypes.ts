@@ -167,7 +167,7 @@ export interface WeatherError {
   error: {
     code: number;
     message: string;
-  } | {};
+  };
 }
 
 // Root weather data interface
@@ -175,5 +175,5 @@ export default interface WeatherData {
   location: WeatherLocation;
   current: CurrentWeather;
   forecast: Forecast;
-  alerts: Alerts;
+  alerts?: Alerts;
 }

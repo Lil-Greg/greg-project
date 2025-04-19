@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@keyframes --buttonHover {
+  from {
+    size: auto;
+  }
+  to {
+    size: 100%;
+    padding: 2rem;
+    font-size: 1rem;
+  }
+}
+.night {
+  background: radial-gradient(#3e3939, #362c40);
+  box-shadow: 10rem 10rem 10rem 10rem rgba(62, 57, 57, 0.4);
+}
+.day {
+  background: radial-gradient(#0077b6, #14148a);
+  box-shadow: 10rem 10rem 10rem 10rem rgba(2, 62, 138, 0.4);
+}

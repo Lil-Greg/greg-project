@@ -5,21 +5,9 @@ import { MagnifyingGlass } from "../../assets/MagnifyingGlass.tsx";
 
 export default function Search() {
     const cityRef = useRef<HTMLInputElement>(null);
-    const daysRef = useRef<HTMLInputElement>(null);
 
     const params = useParams();
     const navigate = useNavigate();
-
-    const handleSelectOnChange = () => {
-        if (!params.q) {
-            return;
-        }
-        if (daysRef === null || daysRef.current === null) {
-            // I want to make a 404 state in the Search Card.
-            // Or maybe a separate component
-            throw new Response("City ref has No Value", { status: 404 });
-        }
-    }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -28,22 +16,18 @@ export default function Search() {
             // I want to make a 404 state in the Search Card.
             // Or maybe a separate component
             throw new Response("City ref has No Value", { status: 404 });
-        } else if (daysRef === null || daysRef.current === null) {
-            throw new Response("City ref has No Value", { status: 404 });
         }
 
         let city = cityRef.current.value;
         city = encodeURIComponent(city);
 
-        let days = daysRef.current.value;
-
-        return navigate(`/weather/${city}/${days}`);
+        return navigate(`/weather/${city}`);
     }
     return (
         <>
             <div className="size-full h-[100vh] flex flex-col place-items-center">
                 <div className="w-[75vw] flex flex-col place-items-center gap-2">
-                    <h1 className="text-center underline leading-[2]">Weather</h1>
+                    <h1 className="text-center underline leading-[1.2] text-[3rem]">Weather</h1>
                     <ReactRouterForm
                         onSubmit={handleSubmit}
                         method="GET"
@@ -63,9 +47,12 @@ export default function Search() {
                                 placeholder="Search City"
                                 required
                             />
+
                             <button
                                 type="submit"
-                                className="capitalize text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                className="capitalize text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none 
+                                focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+                                hover:ease-in-out hover:animate-(--buttonHover)"
                             >
                                 Search
                             </button>
@@ -79,18 +66,11 @@ export default function Search() {
                             </datalist>
                         </div>
 
-                        <div className="flex flex-col items-center">
-                            <input
-                                type="number"
-                                ref={daysRef}
-                                min={0}
-                                max={14}
-                                placeholder="Forecast Days"
-                                className="block w-[20vw] p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            />
-                        </div>
                     </ReactRouterForm>
-                    {params.q && <Outlet />}
+                    {params.q &&
+                        <div className="ease-in w-[80vw] h-[60vh]">
+                            <Outlet />
+                        </div>}
                 </div>
             </div>
         </>
