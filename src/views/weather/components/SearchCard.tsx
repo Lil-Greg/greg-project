@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from "../../../components/card";
-import WeatherData from "../../../types/WeatherTypes";
+import WeatherData from "../../../libs/types/WeatherTypes";
 import { useState } from "react";
 import { formatTemp } from "../../../utils/tempUtil";
 import formatDate, { formatForecastDate } from "../../../utils/date-util";

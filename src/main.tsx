@@ -9,6 +9,8 @@ import { weatherLoader } from './loaders/weatherLoader.ts';
 import { SearchCard } from './views/weather/components/SearchCard.tsx';
 // import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import SearchError from './views/weather/components/SearchError.tsx';
+import MovieSearch from './views/movie/MovieSearch.tsx';
+import movieLoader from './loaders/movieLoader.ts';
 
 //Assigning Global Options
 // const queryClient = new QueryClient({
@@ -51,6 +53,18 @@ const router = createBrowserRouter([
         },
         element: <SearchCard />,
         errorElement: <SearchError />,
+      }
+    ]
+  },
+  {
+    path: '/movie',
+    element: <MovieSearch />,
+    children: [
+      {
+        path: ':q',
+        loader: async ({ params }) => {
+          movieLoader(params);
+        }
       }
     ]
   }
