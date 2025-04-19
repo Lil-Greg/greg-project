@@ -2,8 +2,8 @@ import { useLoaderData } from "react-router-dom";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from "../../../components/card";
 import WeatherData from "../../../libs/types/WeatherTypes";
 import { useState } from "react";
-import { formatTemp } from "../../../utils/tempUtil";
-import formatDate, { formatForecastDate } from "../../../utils/date-util";
+import { formatTemp } from "../../../libs/utils/tempUtil";
+import formatDate, { formatForecastDate } from "../../../libs/utils/date-util";
 import "../Search.css";
 
 export const SearchCard = () => {

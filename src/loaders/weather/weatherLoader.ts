@@ -1,4 +1,4 @@
-import WeatherData, { WeatherError } from "../libs/types/WeatherTypes";
+import WeatherData, { WeatherError } from "../../libs/types/WeatherTypes";
 
 // Have to put vite in the name when using
 // env variables...
