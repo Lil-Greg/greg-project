@@ -9,11 +9,14 @@
 :root {
   /* Add BG Colors */
 
+  --dark-background: #141d2c;
+  --light-background: #f2f9fd;
+
   font-family: var(--font-default);
   line-height: 1.5;
 
   color-scheme: dark;
-  background-color: #242424;
+  background-color: var(--dark-background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

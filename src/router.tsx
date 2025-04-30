@@ -12,7 +12,7 @@ import SearchError from "./views/weather/components/SearchError";
 import Search from "./views/weather/Search";
 import { lazy, Suspense } from "react";
 import Loading from "./components/loading";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 
 const MovieSearch = lazy(() => import("./views/movie/MovieSearch"));
 // Data Mode

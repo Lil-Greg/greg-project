@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
 type Props = {
     children: ReactNode
@@ -15,17 +15,26 @@ export function useThemeContext() {
     return ThemeContext;
 }
 
-// export function useUpdateTheme(newTheme: string) {
-//     const ThemeContext = useThemeContext();
-//     const { setTheme } = useContext(ThemeContext);
-//     setTheme(newTheme);
-// }
+export function useUpdateTheme(newTheme: string) {
+    const ThemeContext = useThemeContext();
+    const { setTheme } = useContext(ThemeContext);
+
+    const docEle = document.documentElement;
+
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+
+    docEle.style.colorScheme = newTheme;
+    docEle.style.backgroundColor = `var(--${newTheme}-background)`;
+}
 
 export default function ThemeProvider({ children }: Props) {
     const ThemeContext = useThemeContext();
     const { theme, setTheme } = useContext(ThemeContext);
 
+    localStorage.setItem("theme", theme);
     const docEle = document.documentElement;
+
     docEle.style.colorScheme = theme;
     docEle.style.backgroundColor = `var(--${theme}-background)`;
 
