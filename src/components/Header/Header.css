@@ -1,10 +1,4 @@
 div.header {
-}
-
-.header-light {
-  border-bottom: solid 1px #abb0b8;
-}
-.header-dark {
   border-bottom: solid 1px #abb0b8;
 }
 
@@ -59,6 +53,4 @@ div.header {
 .routeNavLink:hover::after,
 .routeNavLink:focus::after {
   transform: translate3d(0, 0, 0);
-}
-.routeNavLink:hover {
 }
