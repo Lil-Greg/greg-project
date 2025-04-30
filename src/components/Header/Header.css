@@ -4,7 +4,8 @@ div.header {
 .header-light {
   border-bottom: solid 1px #abb0b8;
 }
-.header-black {
+.header-dark {
+  border-bottom: solid 1px #abb0b8;
 }
 
 .navlink {
