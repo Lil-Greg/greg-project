@@ -3,7 +3,7 @@ import movieLoader from "./loaders/movie/movieLoader";
 import movieSearchLoader from "./loaders/movie/movieSearchLoader";
 import { weatherLoader } from "./loaders/weather/weatherLoader";
 import TicTacToe from "./views/game/TicTacToe";
-import Home from "./views/Home";
+import Home from "./views/index-home/Home";
 import MovieAllTable from "./views/movie/components/MovieAllTable";
 import MovieCard from "./views/movie/components/MovieCard";
 import MovieSearchError from "./views/movie/components/MovieError";
@@ -12,7 +12,7 @@ import SearchError from "./views/weather/components/SearchError";
 import Search from "./views/weather/Search";
 import { lazy, Suspense } from "react";
 import Loading from "./components/loading";
-import Header from "./components/Header/Header";
+import Header from "./views/Header";
 
 const MovieSearch = lazy(() => import("./views/movie/MovieSearch"));
 // Data Mode

@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { useThemeContext } from '../../context/theme/ThemeContext';
+import { useThemeContext } from '../context/theme/ThemeContext';
 import { NavLink, Outlet } from 'react-router-dom';
 import "./Header.css";
 import { MdOutlineNightlight } from 'react-icons/md';
