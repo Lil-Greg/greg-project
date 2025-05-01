@@ -6,7 +6,7 @@ import { formatTemp } from "../../../libs/utils/tempUtil";
 import formatDate, { formatForecastDate } from "../../../libs/utils/date-util";
 import "../Search.css";
 
-export const SearchCard = () => {
+const SearchCard = () => {
     const [unitType, setUnitType] = useState<"fahrenheit" | "celsius">("fahrenheit");
 
     const weatherData: WeatherData = useLoaderData();
@@ -98,3 +98,4 @@ export const SearchCard = () => {
         </Card>
     );
 }
+export default SearchCard;

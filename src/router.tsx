@@ -7,14 +7,15 @@ import Home from "./views/index-home/Home";
 import MovieAllTable from "./views/movie/components/MovieAllTable";
 import MovieCard from "./views/movie/components/MovieCard";
 import MovieSearchError from "./views/movie/components/MovieError";
-import { SearchCard } from "./views/weather/components/SearchCard";
 import SearchError from "./views/weather/components/SearchError";
 import Search from "./views/weather/Search";
 import { lazy, Suspense } from "react";
 import Loading from "./components/loading";
 import Header from "./views/Header";
+import MovieSearch from "./views/movie/MovieSearch";
 
-const MovieSearch = lazy(() => import("./views/movie/MovieSearch"));
+const SearchCard = lazy(() => import("./views/weather/components/SearchCard"));
+
 // Data Mode
 
 // action Fn is used for POST and Editing DB,
@@ -51,7 +52,11 @@ const router = createBrowserRouter([
                             const data = await weatherLoader(q);
                             return data;
                         },
-                        element: <SearchCard />,
+                        element: (
+                            <Suspense fallback={<Loading />}>
+                                <SearchCard />
+                            </Suspense>
+                        ),
                         errorElement: <SearchError />,
                     }
                 ]
@@ -59,13 +64,12 @@ const router = createBrowserRouter([
             {
                 path: '/movie',
                 element: <MovieSearch />,
+                errorElement: <MovieSearchError />,
                 children: [
                     {
                         path: ':title',
                         element: (
-                            <Suspense fallback={<Loading />}>
-                                <MovieAllTable />
-                            </Suspense>
+                            <MovieAllTable />
                         ),
                         errorElement: <MovieSearchError />,
                         loader: async ({ params }) => {
@@ -80,9 +84,7 @@ const router = createBrowserRouter([
                             {
                                 path: ':movieId',
                                 element: (
-                                    <Suspense fallback={<Loading />}>
-                                        <MovieCard />
-                                    </Suspense>
+                                    <MovieCard />
                                 ),
                                 errorElement: <MovieSearchError />,
                                 loader: async ({ params }) => {
