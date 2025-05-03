@@ -17,6 +17,10 @@ const routes = [
     {
         path: '/movie',
         name: 'Search Movies',
+    },
+    {
+        path: '/calculator',
+        name: 'Calculator'
     }
 ];
 
@@ -57,7 +61,7 @@ export default function Header() {
                                 className={({ isActive, isPending }) => (`p-2 rounded-full  ${isActive ? "bg-[#4cbb17]" : isPending && ""}`)}
                             >
                                 <div className="w-full overflow-hidden relative">
-                                    <p key={route.path} className='routeNavLink'>
+                                    <p key={route.path} className='routeNavLink capitalize'>
                                         {route.name}
                                     </p>
                                 </div>

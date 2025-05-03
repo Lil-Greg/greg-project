@@ -13,6 +13,7 @@ import { lazy, Suspense } from "react";
 import Loading from "./components/loading";
 import Header from "./views/Header";
 import MovieSearch from "./views/movie/MovieSearch";
+import Calculator from "./views/calculator/Calculator.tsx";
 
 const SearchCard = lazy(() => import("./views/weather/components/SearchCard"));
 
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
                     },
 
                 ],
+            },
+            {
+                path: '/calculator',
+                element: <Calculator />,
             }
         ]
     },
