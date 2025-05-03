@@ -8,9 +8,12 @@
 
 :root {
   /* Add BG Colors */
-
+  body {
+    size: auto;
+  }
   --dark-background: #141d2c;
   --light-background: #f2f9fd;
+  --gray: #c5c6d0;
 
   font-family: var(--font-default);
   line-height: 1.5;

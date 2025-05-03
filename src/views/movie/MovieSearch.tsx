@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { MagnifyingGlass } from '../../assets/MagnifyingGlass'
 import { Outlet, Form as ReactRouterForm, useNavigate, useParams } from 'react-router-dom';
-import MovieAllTable from './components/MovieAllTable';
 
 export default function MovieSearch() {
     const params = useParams();
@@ -18,8 +17,8 @@ export default function MovieSearch() {
         return navigate(`/movie/${movieRef.current?.value}`);
     }
     return (
-        <div className="size-full h-[100vh] flex flex-col place-items-center">
-            <div className="flex flex-col items-center w-[100vw]">
+        <div className="size-full flex flex-col place-items-center">
+            <div className="flex flex-col items-center w-full">
                 <h1 className='text-[3rem] underline underline-offset-[6px]'>Movie</h1>
             </div>
             <ReactRouterForm

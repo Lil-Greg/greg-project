@@ -1,0 +1,46 @@
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+div.upperEchelon {
+  h3 {
+    border: 1px solid rgba(197, 198, 208, 0.5);
+    border-left: none;
+    border-right: none;
+  }
+}
+div.wholeLine {
+  border: 1px solid rgba(197, 198, 208, 0.5);
+  border-left: none;
+  border-right: none;
+}
+.light {
+  background-color: white;
+  color-scheme: light;
+  box-shadow: 1px 1px white;
+  color: black;
+}
+.dark {
+  background-color: black;
+  color-scheme: dark;
+  box-shadow: 7px 7px 5px 4px rgba(255, 255, 255, 0.1);
+}

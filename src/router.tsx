@@ -4,7 +4,7 @@ import movieSearchLoader from "./loaders/movie/movieSearchLoader";
 import { weatherLoader } from "./loaders/weather/weatherLoader";
 import TicTacToe from "./views/game/TicTacToe";
 import Home from "./views/index-home/Home";
-import MovieAllTable from "./views/movie/components/MovieAllTable";
+import MovieSearchRes from "./views/movie/components/MovieSearchRes";
 import MovieCard from "./views/movie/components/MovieCard";
 import MovieSearchError from "./views/movie/components/MovieError";
 import SearchError from "./views/weather/components/SearchError";
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
                     {
                         path: ':title',
                         element: (
-                            <MovieAllTable />
+                            <MovieSearchRes />
                         ),
                         errorElement: <MovieSearchError />,
                         loader: async ({ params }) => {
