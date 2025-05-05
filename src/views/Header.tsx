@@ -1,9 +1,8 @@
-import { useContext, useEffect } from 'react'
-import { useThemeContext } from '../context/theme/ThemeContext';
 import { NavLink, Outlet } from 'react-router-dom';
 import "./Header.css";
-import { MdOutlineNightlight } from 'react-icons/md';
-import { LuSunMedium } from 'react-icons/lu';
+import ThemeComponent from '@/context/theme/ThemeComponent';
+import { useThemeContext } from '@/context/theme/ThemeContext';
+import { useContext } from 'react';
 
 const routes = [
     {
@@ -25,20 +24,10 @@ const routes = [
 ];
 
 export default function Header() {
-    const docEle = document.documentElement;
-    const ThemeContext = useThemeContext();
-    const { theme, setTheme } = useContext(ThemeContext);
 
-    useEffect(() => {
-
-        localStorage.setItem("theme", theme);
-        docEle.style.colorScheme = theme;
-        docEle.style.backgroundColor = `var(--${theme}-background)`;
-
-    }, [theme]);
     return (
         <>
-            <div className={`w-[100%] h-[10vh] header header-${theme} p-2`}>
+            <div className={`w-[100%] h-[10vh] header text-black dark:text-white p-2`}>
                 <div className='flex flex-row items-center justify-between'>
                     <NavLink
                         to={{
@@ -69,13 +58,7 @@ export default function Header() {
                         )}
                     </div>
                     <div className="themeChange">
-                        <div className={`size-[35px] rounded-full border-solid border-2 p-1 border-[var(--${theme}-border)] hover:cursor-pointer hover:bg-gray-300`} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-                            {theme === "dark" ?
-                                <MdOutlineNightlight className='size-full' />
-                                :
-                                <LuSunMedium className='size-full' />
-                            }
-                        </div>
+                        <ThemeComponent />
                     </div>
                 </div>
             </div>

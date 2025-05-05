@@ -23,7 +23,7 @@ export default function Calculator() {
                                 {buttons.expressions.buttons.map((expression) => (
                                     <button
                                         key={expression}
-                                        className='col-span-1 border-solid border-1 border-slate-600 rounded-full'
+                                        className='col-span-1 border-solid border-1 border-slate-600 rounded-full flex flex-col items-center justify-center'
                                     >
                                         {expression === "sqroot" ?
                                             <RiSquareRoot />
@@ -34,13 +34,13 @@ export default function Calculator() {
                                                 <span>{expression}</span>}
                                     </button>
                                 ))}
-                                <div className="col-span-3">
+                                <div className="col-span-3 row-span-4">
                                     <div className="grid grid-cols-3 grid-rows-4">
                                         {buttons.numbers.buttons.map((num, index) => (
                                             <button
                                                 key={num}
                                                 value={parseInt(num)}
-                                                className='border-solid border-1 border-slate-600 rounded-full'
+                                                className='border-solid border-1 border-slate-600 rounded-full flex flex-col items-center justify-center'
                                             >
                                                 {index === 11 ?
                                                     <TbPlusMinus />

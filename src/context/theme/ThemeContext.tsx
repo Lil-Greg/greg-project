@@ -16,27 +16,40 @@ export function useThemeContext() {
 }
 
 export function useUpdateTheme(newTheme: string) {
-    const ThemeContext = useThemeContext();
-    const { setTheme } = useContext(ThemeContext);
 
     const docEle = document.documentElement;
 
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
+    useEffect(() => {
+        localStorage.setItem("theme", newTheme);
 
-    docEle.style.colorScheme = newTheme;
-    docEle.style.backgroundColor = `var(--${newTheme}-background)`;
+        if (newTheme === "light") {
+            docEle.style.colorScheme = newTheme;
+            docEle.style.backgroundColor = `var(--${newTheme}-background)`;
+            docEle.removeAttribute('data-theme');
+            docEle.setAttribute('data-theme', newTheme);
+
+        } else {
+            docEle.style.colorScheme = newTheme;
+            docEle.style.backgroundColor = `var(--${newTheme}-background)`;
+            docEle.removeAttribute('data-theme');
+            docEle.setAttribute('data-theme', newTheme);
+        }
+    }, [newTheme]);
+
 }
 
 export default function ThemeProvider({ children }: Props) {
     const ThemeContext = useThemeContext();
     const { theme, setTheme } = useContext(ThemeContext);
 
-    localStorage.setItem("theme", theme);
-    const docEle = document.documentElement;
+    const [storage] = useState(localStorage.getItem("theme"));
 
-    docEle.style.colorScheme = theme;
-    docEle.style.backgroundColor = `var(--${theme}-background)`;
+    useEffect(() => {
+        if (storage === null) {
+            return;
+        }
+        setTheme(storage);
+    }, [storage]);
 
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>

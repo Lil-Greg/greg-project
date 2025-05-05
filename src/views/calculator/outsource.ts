@@ -22,7 +22,7 @@ export const buttonStuff = {
     },
     pemdas: {
         name: "pemdas",
-        buttons: ["+", "-", "x", "÷", "()"]
+        buttons: ["+", "-", "x", "÷", "()", "="]
     }
 
 }
