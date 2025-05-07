@@ -1,59 +1,46 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+// ThemeContext.js
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 type Props = {
-    children: ReactNode
-}
+    children: ReactNode,
+};
 
-// Do Not Know if this is the most effecient Context usage.
+// Using a placeholder to set the createContext
+const ThemeContext = createContext({
+    theme: (localStorage.getItem("theme") || window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+    toggleTheme: () => { }
+});
 
-export function useThemeContext() {
-    const local = localStorage.getItem("theme") || "dark";
+export const ThemeProvider = ({ children }: Props) => {
+    const getInitialTheme = localStorage.getItem('theme') || window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-    const [theme, setTheme] = useState(local);
-
-    const ThemeContext = createContext({ theme, setTheme });
-    return ThemeContext;
-}
-
-export function useUpdateTheme(newTheme: string) {
-
-    const docEle = document.documentElement;
+    const [theme, setTheme] = useState(getInitialTheme);
 
     useEffect(() => {
-        localStorage.setItem("theme", newTheme);
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
 
-        if (newTheme === "light") {
-            docEle.style.colorScheme = newTheme;
-            docEle.style.backgroundColor = `var(--${newTheme}-background)`;
-            docEle.removeAttribute('data-theme');
-            docEle.setAttribute('data-theme', newTheme);
-
-        } else {
-            docEle.style.colorScheme = newTheme;
-            docEle.style.backgroundColor = `var(--${newTheme}-background)`;
-            docEle.removeAttribute('data-theme');
-            docEle.setAttribute('data-theme', newTheme);
-        }
-    }, [newTheme]);
-
-}
-
-export default function ThemeProvider({ children }: Props) {
-    const ThemeContext = useThemeContext();
-    const { theme, setTheme } = useContext(ThemeContext);
-
-    const [storage] = useState(localStorage.getItem("theme"));
-
+    // Auto-update if system preference changes and no manual preference is set
     useEffect(() => {
-        if (storage === null) {
-            return;
-        }
-        setTheme(storage);
-    }, [storage]);
+        const media = window.matchMedia('(prefers-color-scheme: dark)');
+        const listener = (e: MediaQueryListEvent) => {
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                setTheme(newTheme);
+            }
+        };
+        media.addEventListener('change', listener);
+        return () => media.removeEventListener('change', listener);
+    }, []);
+
+    const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
     return (
-        <ThemeContext.Provider value={{ theme, setTheme }}>
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );
-}
+};
+
+export const useTheme = () => useContext(ThemeContext);

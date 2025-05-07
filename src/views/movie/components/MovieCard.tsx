@@ -4,17 +4,12 @@ import handleImgError from '../../../components/handleImgError';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/card';
 
 import "./MovieSearchRes.css";
-import { useContext } from 'react';
-import { useThemeContext } from '../../../context/theme/ThemeContext';
 
 export default function MovieCard() {
     const movieData: MovieApiResponse = useLoaderData();
-    const ThemeContext = useThemeContext();
-    const { theme } = useContext(ThemeContext)
-    console.log("Theme in Card: ", theme);
     return (
         <div className='container my-5'>
-            <Card className={`${theme}`}>
+            <Card className="">
                 <CardHeader className='w-full h-[auto]'>
                     <div className="block grid grid-cols-3 pb-5 border-b-2 dark:border-gray-700 border-black outline-offset-5">
                         <img

@@ -9,35 +9,24 @@
   --font-default: Inter, Montserrat, Helvertica, Arial, sans-serif;
 }
 
-:root[data-theme="dark"] {
+/* May be erroring because I am using the data-theme */
+[data-theme="dark"] {
   background-color: var(--dark-background);
-  body {
-    color-scheme: "dark";
-    background-color: var(--dark-background);
-  }
+  color-scheme: dark;
 }
-:root[data-theme="light"] {
+[data-theme="light"] {
   background-color: var(--light-background);
-  body {
-    color-scheme: "light";
-    background-color: var(--light-background);
-  }
+  color-scheme: light;
 }
 
 :root {
   /* Add BG Colors */
-  body {
-    size: auto;
-  }
   --dark-background: #141d2c;
   --light-background: #f2f9fd;
   --gray: #c5c6d0;
 
   font-family: var(--font-default);
   line-height: 1.5;
-
-  color-scheme: dark;
-  background-color: var(--dark-background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -147,13 +136,4 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
