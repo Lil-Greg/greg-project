@@ -112,14 +112,17 @@ export default function MovieCard() {
                                 </h1>
                                 <div className="flex flex-col items-center w-full">
 
-                                    <div className="wholeLine w-full flex flex-row justify-evenly">
-                                        <h3>
-                                            Awards:&nbsp;
-                                            <span>{movieData.Awards}</span>
-                                        </h3>
-                                        <h3>IMDb Rating:&nbsp;
-                                            <span>{movieData.imdbVotes}</span>
-                                        </h3>
+                                    <div className=" w-full flex flex-row justify-center">
+                                        <div className="wholeLine px-3 w-[50%] flex flex-row justify-between">
+
+                                            <h3>
+                                                Awards:&nbsp;
+                                                <span>{movieData.Awards}</span>
+                                            </h3>
+                                            <h3>IMDb Rating:&nbsp;
+                                                <span>{movieData.imdbRating}</span>
+                                            </h3>
+                                        </div>
                                     </div>
 
                                     <div className="oneELe">

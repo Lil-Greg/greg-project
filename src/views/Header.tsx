@@ -1,8 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import "./Header.css";
 import ThemeComponent from '@/context/theme/ThemeComponent';
-import { useThemeContext } from '@/context/theme/ThemeContext';
-import { useContext } from 'react';
 
 const routes = [
     {
@@ -27,7 +25,7 @@ export default function Header() {
 
     return (
         <>
-            <div className={`w-[100%] h-[10vh] header text-black dark:text-white p-2`}>
+            <div className={`w-[100%] h-[10vh] header p-2`}>
                 <div className='flex flex-row items-center justify-between'>
                     <NavLink
                         to={{
