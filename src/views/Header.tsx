@@ -25,7 +25,7 @@ export default function Header() {
 
     return (
         <>
-            <div className={`w-[100%] h-[10vh] header p-2`}>
+            <div className='w-[100%] h-[10dvh] header p-2 border-solid border-b-1 border-slate-600'>
                 <div className='flex flex-row items-center justify-between'>
                     <NavLink
                         to={{
