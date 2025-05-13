@@ -9,7 +9,6 @@ export default function Calculator() {
     const buttons = buttonStuff;
     const [inputVal, setInputVal] = useState("");
     const [resHistory, setResHistory] = useState<string[]>([]);
-    let result = "";
 
     const handleBtnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         console.log("Onclick Event Thing Testing", event);
@@ -19,23 +18,18 @@ export default function Calculator() {
         setInputVal(e.target.value);
     }
     const handleClose = (index: number) => {
-        resHistory.splice(index, 1);
-        console.log(resHistory);
-        setResHistory(resHistory);
-    }
+        const updatedHistory = resHistory.filter((_, i) => i !== index);
+        setResHistory(updatedHistory);
+    };
     const handleSolve = (e: React.FormEvent) => {
         e.preventDefault();
 
-        result = evaluate(inputVal);
-        resHistory.push(`${inputVal} = ${result}`);
+        const result = evaluate(inputVal);
+        const newEntry = `${inputVal} = ${result}`;
 
-        // TO Cause Rerender so the map works
-        setResHistory(resHistory);
-        console.log(result);
-        console.log(resHistory);
-
+        setResHistory(prev => [...prev, newEntry]); // Immutable update
         setInputVal("");
-    }
+    };
 
     // console.log("Keyboard Event Testing", window.KeyboardEvent.name);
     return (
