@@ -14,7 +14,7 @@ example Layout
 export const buttonStuff = {
     operations: {
         name: "operations",
-        buttons: [" + ", " - ", " / ", " · "]
+        buttons: [" + ", " - ", " / ", " * "]
     },
     numbers: {
         name: "numbers",

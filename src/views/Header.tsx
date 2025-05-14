@@ -2,21 +2,30 @@ import { NavLink, Outlet } from 'react-router-dom';
 import "./Header.css";
 import ThemeComponent from '@/context/theme/ThemeComponent';
 
+import { FcCalculator } from "react-icons/fc";
+import { FcCamcorderPro } from "react-icons/fc";
+import { FcGlobe } from "react-icons/fc";
+import { GiTicTacToe } from "react-icons/gi";
+
 const routes = [
     {
         path: '/game',
+        icon: <GiTicTacToe className='size-full' />,
         name: 'Tic Tac Toe',
     },
     {
         path: '/weather',
+        icon: <FcGlobe className='size-full' />,
         name: 'Check Weather',
     },
     {
         path: '/movie',
+        icon: <FcCamcorderPro className='size-full' />,
         name: 'Search Movies',
     },
     {
         path: '/calculator',
+        icon: <FcCalculator className='size-full' />,
         name: 'Calculator'
     }
 ];
@@ -48,9 +57,16 @@ export default function Header() {
                                 className={({ isActive, isPending }) => (`p-2 rounded-full  ${isActive ? "bg-[#4cbb17]" : isPending && ""}`)}
                             >
                                 <div className="w-full overflow-hidden relative">
-                                    <p key={route.path} className='routeNavLink capitalize'>
-                                        {route.name}
-                                    </p>
+                                    <span className='flex flex-row items-center gap-2'>
+                                        <span className='size-[25px]'>
+                                            {route.icon}
+                                        </span>
+                                        <p key={route.path} className='routeNavLink capitalize'>
+                                            {route.name}
+                                        </p>
+                                    </span>
+
+
                                 </div>
                             </NavLink>
                         )}

@@ -1,33 +1,72 @@
 import { useState } from 'react';
 import { buttonStuff } from './outsource';
 import { TbPlusMinus } from "react-icons/tb";
-import { evaluate } from 'mathjs';
+import { evaluate, create, all } from 'mathjs';
 
 import { IoMdClose } from "react-icons/io";
+import { TbMathXDivideY as FractionIcon } from "react-icons/tb";
+import { TbDecimal } from "react-icons/tb";
+import { FaArrowRightLong } from "react-icons/fa6";
+
+
+type ResultsObject = {
+    equation: string;
+    result: string;
+    fraction: string;
+    mixedNum: string;
+    showFrac: boolean;
+};
+
 
 export default function Calculator() {
     const buttons = buttonStuff;
     const [inputVal, setInputVal] = useState("");
-    const [resHistory, setResHistory] = useState<string[]>([]);
+    const [resHistory, setResHistory] = useState<ResultsObject[]>([]);
+
+    const math = create(all);
+
+    // EVENT HANDLERS
+
+
+    const handleShowFrac = (index: number) => {
+        setResHistory(prev => {
+            const updated = [...prev];
+            updated[index] = {
+                ...updated[index],
+                showFrac: !updated[index].showFrac
+            };
+            return updated;
+        });
+    };
 
     const handleBtnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        console.log("Onclick Event Thing Testing", event);
         setInputVal(inputVal.concat(event.currentTarget.value));
     }
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputVal(e.target.value);
     }
+
     const handleClose = (index: number) => {
         const updatedHistory = resHistory.filter((_, i) => i !== index);
         setResHistory(updatedHistory);
     };
+
     const handleSolve = (e: React.FormEvent) => {
         e.preventDefault();
 
         const result = evaluate(inputVal);
-        const newEntry = `${inputVal} = ${result}`;
+        const fraction = math.fraction(result).simplify().toFraction();
+        const mixedNum = math.fraction(result).simplify().toFraction(true);
 
-        setResHistory(prev => [...prev, newEntry]); // Immutable update
+        const temp: ResultsObject = {
+            equation: inputVal,
+            result,
+            fraction,
+            mixedNum,
+            showFrac: false,
+        };
+        setResHistory(prev => [...prev, temp]); // Immutable update
         setInputVal("");
     };
 
@@ -43,12 +82,34 @@ export default function Calculator() {
                         {/* Result Overflow */}
                         <div className='w-full h-[fit-content] flex flex-col-reverse items-end flex-grow overflow-y-auto'>
                             {resHistory.map((res, index) => (
-                                <div key={res} className='w-full h-[35px] p-2 flex flex-row items-center border-y-1 border-solid border-slate-200 dark:border-slate-500'>
+                                <div key={index} className='w-full h-[35px] p-2 flex flex-row items-center border-y-1 border-solid border-slate-200 dark:border-slate-500 translation-all duration-1000'>
                                     <span
-                                        key={res}
-                                        className='w-[98%] flex flex-col items-center text-[1.5dvw] justify-self-center'
+                                        key={index}
+                                        className='w-[98%] h-full flex flex-row items-center text-[1.5dvw] justify-evenly'
                                     >
-                                        {res}
+                                        <span>
+                                            {res.equation}
+                                        </span>
+                                        <FaArrowRightLong />
+                                        <span className='flex flex-row items-center gap-2'>
+                                            <span>
+                                                {res.showFrac === true ? <>{res.fraction}&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;{res.mixedNum}</>
+                                                    : res.result}
+                                            </span>
+
+                                            <span className='hover:cursor-pointer' onClick={() => handleShowFrac(index)}>
+                                                {res.showFrac === true ?
+                                                    <TbDecimal
+                                                        className='size-[2.7dvh]'
+                                                    />
+                                                    :
+                                                    <FractionIcon
+                                                        className='size-[2.7dvh]'
+                                                    />
+                                                }
+                                            </span>
+
+                                        </span>
                                     </span>
                                     <span className='w-[2%] flex flex-col items-end justify-self-end'>
                                         <IoMdClose className='hover:cursor-pointer size-[1.75dvw]' onClick={() => handleClose(index)} />
