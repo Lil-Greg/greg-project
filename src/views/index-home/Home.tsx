@@ -17,7 +17,7 @@ export default function Home() {
                         className="border-rigid rounded-xl"
                     />
                     <div className="w-full text-center">
-                        <Link to={'https://x.com/i/status/1920387087049572704'} target="_blank" className="w-[20%] m-1 relative inline-block no-underline wave-loop overflow-y-hidden">
+                        <Link to={'https://x.com/i/status/1920387087049572704'} target="_blank" className="w-[20%] relative inline-block no-underline wave-loop overflow-y-hidden">
                             Link to Video
                         </Link>
                     </div>

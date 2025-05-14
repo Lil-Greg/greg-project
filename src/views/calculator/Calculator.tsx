@@ -66,7 +66,7 @@ export default function Calculator() {
             mixedNum,
             showFrac: false,
         };
-        setResHistory(prev => [...prev, temp]); // Immutable update
+        setResHistory(prev => [temp, ...prev]); // Immutable update
         setInputVal("");
     };
 
@@ -82,17 +82,18 @@ export default function Calculator() {
                         {/* Result Overflow */}
                         <div className='w-full h-[fit-content] flex flex-col-reverse items-end flex-grow overflow-y-auto'>
                             {resHistory.map((res, index) => (
-                                <div key={index} className='w-full h-[35px] p-2 flex flex-row items-center border-y-1 border-solid border-slate-200 dark:border-slate-500 translation-all duration-1000'>
+                                <div key={index} className='w-full h-[8dvh] p-2 flex flex-row items-center border-y-1 border-solid border-slate-200 dark:border-slate-500 translation-all duration-1000'>
                                     <span
                                         key={index}
-                                        className='w-[98%] h-full flex flex-row items-center text-[1.5dvw] justify-evenly'
+                                        className='w-full h-full flex flex-row items-center text-[1.5dvw] justify-between'
                                     >
-                                        <span>
+                                        <span className='w-[25%] text-end'>
                                             {res.equation}
+
                                         </span>
                                         <FaArrowRightLong />
-                                        <span className='flex flex-row items-center gap-2'>
-                                            <span>
+                                        <span className='w-[45%] flex flex-row items-center justify-between gap-2'>
+                                            <span className='w-[75%] text-center'>
                                                 {res.showFrac === true ? <>{res.fraction}&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;{res.mixedNum}</>
                                                     : res.result}
                                             </span>
@@ -108,12 +109,13 @@ export default function Calculator() {
                                                     />
                                                 }
                                             </span>
+                                            <span className='flex flex-col items-end justify-self-end'>
+                                                <IoMdClose className='hover:cursor-pointer size-[1.75dvw]' onClick={() => handleClose(index)} />
+                                            </span>
 
                                         </span>
                                     </span>
-                                    <span className='w-[2%] flex flex-col items-end justify-self-end'>
-                                        <IoMdClose className='hover:cursor-pointer size-[1.75dvw]' onClick={() => handleClose(index)} />
-                                    </span>
+
                                 </div>
                             ))}
                         </div>
