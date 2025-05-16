@@ -170,6 +170,11 @@ export interface WeatherError {
   };
 }
 
+export interface CurrentWeatherRes {
+  current: CurrentWeather;
+  location: WeatherLocation;
+}
+
 // Root weather data interface
 export default interface WeatherData {
   location: WeatherLocation;

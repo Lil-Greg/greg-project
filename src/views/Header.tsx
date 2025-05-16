@@ -6,8 +6,9 @@ import { FcCalculator } from "react-icons/fc";
 import { FcCamcorderPro } from "react-icons/fc";
 import { FcGlobe } from "react-icons/fc";
 import { GiTicTacToe } from "react-icons/gi";
+import CurrentWeather from '@/components/currentWeather';
 
-const routes = [
+const navlink = [
     {
         path: '/game',
         icon: <GiTicTacToe className='size-full' />,
@@ -50,19 +51,19 @@ export default function Header() {
 
                     </NavLink>
                     <div className="w-[75%] flex flex-row justify-between">
-                        {routes.map((route) =>
+                        {navlink.map((link) =>
                             <NavLink
-                                to={route.path}
-                                key={route.path}
+                                to={link.path}
+                                key={link.path}
                                 className={({ isActive, isPending }) => (`p-2 rounded-full  ${isActive ? "bg-[#4cbb17]" : isPending && ""}`)}
                             >
                                 <div className="w-full overflow-hidden relative">
                                     <span className='flex flex-row items-center gap-2'>
                                         <span className='size-[25px]'>
-                                            {route.icon}
+                                            {link.icon}
                                         </span>
-                                        <p key={route.path} className='routeNavLink capitalize'>
-                                            {route.name}
+                                        <p key={link.path} className='routeNavLink capitalize'>
+                                            {link.name}
                                         </p>
                                     </span>
 
@@ -70,6 +71,9 @@ export default function Header() {
                                 </div>
                             </NavLink>
                         )}
+                    </div>
+                    <div className='size-[3dvw]' id="currentWeather">
+                        <CurrentWeather />
                     </div>
                     <div className="themeChange">
                         <ThemeComponent />
