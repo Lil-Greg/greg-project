@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const CurrentWeather = () => {
     const { data, error, isLoading } = useGeoLocation();
-    console.log("Data from Geo Location", data);
     if (error !== null) {
         throw Error(`Not Working!! (Geolocation) Error: ${error}`)
     }

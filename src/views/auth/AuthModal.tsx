@@ -11,7 +11,10 @@ export default function AuthModal() {
                 {yo}
             </span>
 
-            <div className="container hover:cursor-pointer hover:bg-gray-200" onClick={() => setLoginShow(!loginShow)}>
+            <div className="hover:cursor-pointer hover:bg-gray-200" onClick={() => setLoginShow(!loginShow)}>
+                {loginShow ? "No Account?" : "Sign In"}
+            </div>
+            <div className="size-full flex flex-col items-center">
                 {loginShow ? <Login /> : <Register />}
             </div>
 
