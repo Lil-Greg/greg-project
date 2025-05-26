@@ -2,10 +2,12 @@ import { useGeoLocation } from "@/backend/getIp";
 import Loading from "./loading";
 import { HoverCard, HoverCardArrow, HoverCardContent, HoverCardPortal, HoverCardTrigger } from "@radix-ui/react-hover-card";
 import { Link } from "react-router-dom";
+import { formatTemp } from "@/libs/utils/tempUtil";
+import { useState } from "react";
 
 const CurrentWeather = () => {
     const { data, error, isLoading } = useGeoLocation();
-    if (error !== null) {
+    if (!data || error !== null) {
         throw Error(`Not Working!! (Geolocation) Error: ${error}`)
     }
 
@@ -14,6 +16,8 @@ const CurrentWeather = () => {
     }
 
     const encoded = encodeURIComponent(`${data?.location.region}, ${data?.location.country}`);
+
+    const [faren, setFaren] = useState(true);
     return (
         <div className="size-full">
             <HoverCard>
@@ -32,16 +36,17 @@ const CurrentWeather = () => {
                             <div className="flex flex-row">
 
                                 <div className="flex flex-col">
-                                    <div className="size-[3dvw] p-1 border-solid border-1 border-slate-400 rounded-full">
+                                    <div className="size-[3dvw] flex flex-row items-center gap-3 p-1 border-solid border-1 border-slate-400 rounded-full">
                                         <img
-                                            src={data?.current.condition.icon}
-                                            alt={`${data?.current.condition.text} Icon`}
+                                            src={data.current.condition.icon}
+                                            alt={`${data.current.condition.text} Icon`}
                                             className="w-[2.3dvw]"
                                         />
+                                        <h1 className="w-[50px] text-lg underline decoration-2 decoration-slate-500">{data?.location.region}</h1>
                                     </div>
                                     <h3>{data?.current.condition.text}</h3>
 
-                                    <p>{data?.current.feelslike_f}</p>
+                                    <p className="hover:bg-slate-300 hover:dark:bg-slate-500 hover:cursor-pointer" onClick={() => setFaren(!faren)}>{formatTemp((faren ? data.current.feelslike_f : data.current.feelslike_c), (faren ? "fahrenheit" : "celsius"))}</p>
                                 </div>
 
                                 <div className="flex">

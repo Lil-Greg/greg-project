@@ -23,7 +23,6 @@ export default function Login() {
     return (
         <>
             <div className="flex flex-col items-center gap-2">
-                <h1 className="text-[5dvw]">Login</h1>
 
                 <form onSubmit={handleSubmit}>
                     <div className="w-full flex flex-col gap-2">
@@ -45,7 +44,7 @@ export default function Login() {
                                 ref={pRef}
                                 className="h-full p-2 grow focus:outline-none group"
                             />
-                            <div className="h-[35px] p-2 hover:cursor-pointer bg-gray-300 dark:bg-gray-700 rounded-r-lg flex items-center" onClick={() => setPShow(!pShow)}>
+                            <div className="h-[2.2rem] p-2 hover:cursor-pointer bg-gray-300 dark:bg-gray-700 rounded-r-lg flex items-center" onClick={() => setPShow(!pShow)}>
                                 {pShow ? <IoMdEye /> : <IoMdEyeOff />}
                             </div>
                         </div>
